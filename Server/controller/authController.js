@@ -14,7 +14,7 @@ module.exports =
         switch (req.method) {
             case "GET":
                 res.render(
-                    'fitAuthorization',
+                    'auth',
                     {
                         title: "Authorization",
                         css: ['materialize.min', 'authorization'],
@@ -74,7 +74,7 @@ module.exports =
         switch (req.method) {
             case "GET":
                 res.render(
-                    'fitRegistration',
+                    'reg',
                     {
                         title: "Registration",
                         css: ['materialize.min','registration'],
@@ -86,10 +86,11 @@ module.exports =
                 let login = req.body.login
                 let password = req.body.password
                 let hashPassword = crypto.createHash('md5').update(password).digest('hex')
+                let groupID = req.body.groupID
                 //bcrypt.hash(password, 5).then(r => {
                 //     hashPassword = r
                 // });
-                UserData.create({login: login,  password: hashPassword, role: 'ENROLLEE'})
+                UserData.create({login: login,  password: hashPassword, role: 'USER', groupID: groupID})
                     .then(() =>  res.status(200).json({status: "ok"})/*res.redirect('/auth/login')*/)
                     .catch(err => {
                         res.status(200).json({status: "not ok"})

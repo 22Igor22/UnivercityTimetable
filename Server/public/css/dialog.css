@@ -1,0 +1,127 @@
+#show-chat{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+    background-color: #0B7FAB;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50% 0 0 50%;
+    cursor: pointer;
+}
+.show{
+    animation: ease-in 2s show;
+}
+.hide{
+    animation: ease-out 2s hide;
+}
+@keyframes hide {
+    0%   {transform: translateX(0)}
+    100% {transform: translateX(300px)}
+}
+@keyframes show{
+    0%   {transform: translateX(0px)}
+    100% {transform: translateX(-300px)}
+}
+.showAdmin{
+    animation: ease-in 1s showAdmin;
+}
+.hideAdmin{
+    animation: ease-out 1s hideAdmin;
+}
+@keyframes hideAdmin {
+    0%   {transform: translateX(0)}
+    100% {transform: translateX(430px)}
+}
+@keyframes showAdmin{
+    0%   {transform: translateX(0px)}
+    100% {transform: translateX(-430px)}
+}
+
+#dialog_indicator{
+    padding: 5px;
+    position: relative;
+    color: white;
+}
+
+#dialog_status{
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+#dialog_chat_user{
+    width: 220px;
+    height: 310px;
+    position: fixed;
+    bottom: 10px;
+    right: -300px;
+    background-color: #E9723D;
+    box-shadow: -2px 2px 5px black;
+}
+#dialog_chat_admin{
+    display: grid;
+    grid-auto-columns: 1fr 1fr;
+    grid-template-areas: 'users interface';
+    width: 430px;
+    height:310px;
+    background-color: #E9723D;
+    position: fixed;
+    bottom: 30px;
+    right: -430px;
+    border-radius: 5px 0 0 5px;
+}
+#dialog_chat_user_close{
+    display: inline-block;
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    border: 1px solid white;
+}
+#dialog_interface{
+    grid-area: interface;
+    background-color: #E9723D;
+}
+
+.dialog_users{
+    grid-area: users;
+    background-color: #E9723D;
+}
+
+#dialog_messages{
+    top: 5px;
+    padding: 5px;
+    margin: 5px;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    overflow-y: scroll;
+}
+#dialog_input{
+    width: 200px;
+    margin: 5px;
+}
+#dialog_send{
+    width: 207px;
+    margin-left: 5px;
+    background-color: #0B7FAB;
+    color: white;
+    border: none;
+
+}
+.dialog_users{
+    width: 150px;
+    margin: 10px;
+    /*overflow-y: scroll;*/
+    background-color: white;
+}

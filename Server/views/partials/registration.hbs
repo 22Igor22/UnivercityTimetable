@@ -1,0 +1,47 @@
+<div class="hidden"></div>
+<div id="registration">
+
+    <div class="authorization-header">
+        Регистрация
+    </div>
+
+    <div class="input-field">
+        <label class="black-text x-large" for="login">
+            <p class="x-large">Имя пользователя </p>
+        </label>
+        <input id="login" type="text" name="login" autocomplete="new-password" required onkeyup="checkLogin(this.value)">
+    </div>
+
+    <div class="input-field">
+        <label class="black-text x-large" for="password">
+            <p class="x-large">Пароль</p>
+        </label>
+        <input id="password" type="password" name="password" autocomplete="new-password" onkeyup="checkPassword(this.value)">
+    </div>
+
+    <div class="input-field">
+        <label class="black-text x-large" for="repeat">
+            <p class="x-large">Повторите пароль</p>
+        </label>
+        <input id="repeat" type="password" name="repeat" autocomplete="new-password" onkeyup="checkRepeat(this.value)">
+    </div>
+
+    <div class="input-field">
+        <label class="black-text x-large" for="groupID">
+            <p class="x-large">Номер группы</p>
+        </label>
+        <input id="groupID" type="groupID" name="groupID" autocomplete="new-password" onkeyup="checkGroupID(this.value)">
+    </div>
+
+    <div id="serving" class="authorization_error">
+        <p id="errorInput"></p>
+        <p id="error"></p>
+    </div>
+
+    <div>
+        <a class="black-text large authorization_links_a" href="https://localhost:5000/auth/login" style="color: black"> Вы уже зарегистрированы?</a>
+        <button id="submit_regist">Регистрация</button>
+    </div>
+</div>
+
+<script src="/js/registration.js"></script>

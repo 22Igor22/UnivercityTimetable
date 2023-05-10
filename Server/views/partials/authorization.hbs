@@ -1,0 +1,34 @@
+<div class="hidden"></div>
+
+<div id="authorization">
+
+    <div class="authorization-header">
+        Авторизация
+    </div>
+
+    <div class="input-field">
+        <label class="black-text x-large bold validate" for="login">
+            <p class="x-large">Имя пользователя </p></label>
+        <input id="login" type="text" name="login" autocomplete="new-password" required onkeyup="checkLogin(this.value)">
+    </div>
+
+    <div class="input-field">
+        <label  class="black-text x-large bold" for="password">
+            <p class="x-large">Пароль</p>
+        </label>
+        <input id="password" type="password" name="password" autocomplete="new-password" required onkeyup="checkPassword(this.value)">
+    </div>
+
+    <div id="serving" class="authorization_error">
+        <p id="errorInput"></p>
+        <p id="error"></p>
+    </div>
+
+    <div class="authorization_links">
+        <button id="submit_login" class="authorization_links_button">Войти</button>
+        <a class="black-text large authorization_links_a" href="https://Eingeschriebener/auth/register" style="color: black"> Вы ещё не зарегистрировались?</a>
+    </div>
+
+</div>
+
+<script src="/js/authorization.js"></script>

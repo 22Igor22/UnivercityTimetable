@@ -1,0 +1,72 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+[class*="entypo-"]:before {
+    font-family: 'entypo', sans-serif;
+}
+#authorization {
+    width: 500px;
+    height: 370px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255,255,255, 20%);
+    border: 2px white solid;
+    padding: 20px;
+    display: grid;
+    grid-gap: 15px;
+    grid-template-rows: 1fr 1fr 1fr auto 1fr;
+}
+.background-orange{
+    background-color: #E9723D;;
+}
+.background-blue{
+    background-color: #0B7FAB;;
+}
+.authorization-header{
+    font-size: xx-large;
+    color: white;
+    text-shadow: 1px 1px 5px black;
+    text-align: center;
+}
+.authorization_links_a{
+    margin-left: 30px;
+}
+
+input::placeholder {
+    color: #0B7FAB;
+    font-weight: bolder;
+}
+.authorization_links{
+    position: absolute;
+    width: 460px;
+    margin: 10px;
+    bottom: 20px;
+}
+.authorization_links_button{
+    position: absolute;
+    right: 0;
+}
+.authorization_error{
+    color: red;
+}
+.input_padding{
+    width: 20px;
+}
+input:focus {
+    outline-color: rgba(0,0,0,0);
+    color: #0B7FAB;
+}
+
+button {
+    float:right;
+    height: 40px;
+    width: 100px;
+    background: #0B7FAB;
+    border-radius:7px;
+    color:white;
+    font-size:18px;
+    border: 0;
+}

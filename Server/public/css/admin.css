@@ -1,0 +1,129 @@
+/**
+ADMIN
+ */
+.admin-header{
+    margin: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.admin-buttons{
+    margin: 10px;
+    width: 220px;
+    height: 120px;
+    background-color: #E9723D;
+    border-radius: 20px;
+}
+.admin-button{
+    border-radius: 20px;
+    width: 200px;
+    height: 40px;
+    padding: 10px;
+    margin: 10px;
+}
+/**
+TABLE
+*/
+.text-for-table{
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    overflow: hidden;
+    color: black;
+}
+
+.table thead{
+    background-color: #E9723D;
+    color: white;
+    word-wrap: break-word;
+    font-size: 10px;
+}
+
+/*tr:nth-child(2n) {
+    background: #0B7FAB;
+    color: white;
+}*/
+
+.table th, .table td {
+    border: 1px solid #888;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+
+.table th, .table td {
+    border: 1px solid #888;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+}
+
+.table td:hover {
+    background: #0B7FAB;
+    color: white;
+}
+
+.table td:hover:before {
+    background-color: #eee;
+    content: '';
+    height: 100%;
+    left: -5000px;
+    position: absolute;
+    top: 0;
+    width: 10000px;
+    z-index: -2;
+}
+
+.table td:hover:after {
+    background-color: #eee;
+    content: '';
+    height: 10000px;
+    left: 0;
+    position: absolute;
+    top: -5000px;
+    width: 100%;
+    z-index: -1;
+}
+.table td:hover:last-child {
+
+}
+.td-button-table{
+    padding: 0;
+    margin: 0;
+}
+.button-table{
+    display: block;
+    width: 100%;
+    background-color: #E9723D;
+    margin: 3px;
+    height: 100%;
+    border: 1px solid white;
+}
+.button-table-green:hover{
+    cursor: pointer;
+    background-color: green;
+    color: white;
+}
+.button-table-red:hover{
+    cursor: pointer;
+    background-color: red;
+    color: white;
+}
+
+#view__table__budgetary{
+    font-size: 20px;
+}
+
+#admin_bad_application_paid{
+    font-size: 20px;
+}
+#view__table__paid{
+    font-size: 20px;
+}

@@ -1,0 +1,141 @@
+body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+    width: auto;
+}
+html{
+    margin-left: auto;
+    margin-right: auto;
+
+}
+body {
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #F4D75E;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+
+.hidden{
+    min-height: calc(100vh - 18px - 65px);
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+/**
+GENERAL
+ */
+.bold{
+    font-weight: 600;
+}
+
+.medium{
+    font-size: medium;
+}
+.large{
+    font-size: large;
+}
+.x-large{
+    font-size: x-large;
+}
+.xx-large{
+    font-size: xx-large;
+}
+.xxx-large{
+    font-size: xxx-large;
+}
+.pointer{
+    cursor: pointer;
+}
+.blue-button{
+    float:right;
+    height: 40px;
+    border: 0;
+    background: #0B7FAB;
+    border-radius:7px;
+    padding: 10px;
+    color:white;
+    font-size:18px;
+    margin: 5px;
+}
+/**
+HEADER
+ */
+.nav{
+
+}
+
+.nav-wrapper{
+    display: grid;
+    grid-template-columns: 200px 1fr 160px;
+    grid-template-areas: ' fit logo icons';
+    background-color: #E9723D;
+    overflow: hidden;
+    font-size: 25px;
+}
+#brand-logo{
+    top: -20px;
+}
+#logo{
+    grid-area: logo;
+    font-size: 30px;
+    text-align: center;
+}
+#fit{
+    grid-area: fit;
+    margin-left: 50px;
+}
+#icons{
+    grid-area: icons;
+    display: inline-flex;
+}
+.nav-wrapper-icons{
+    display: inline-block;
+    height: 40px;
+    margin: 10px;
+    padding: 0;
+    width: auto;
+}
+
+/**
+FOOTER
+ */
+footer {
+    height: 20px;
+    background: #0B7FAB;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

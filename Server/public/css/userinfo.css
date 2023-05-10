@@ -1,0 +1,80 @@
+.userinfo{
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr 4fr 1fr 4fr 1fr;
+    grid-template-areas: ' . data . marks . status . ';
+    height: 300px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.userinfo-general{
+    position: relative;
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    background-color: rgba(255,255,255, 20%);
+    border: 2px white solid;
+    height: 500px;
+    min-width: 350px;
+}
+.userinfo-general-head{
+    font-size: 30px;
+    text-align: center;
+    background-color: #E9723D;
+    color: white;
+}
+.userinfo-rows{
+    padding: 10px;
+}
+.userinfo-row{
+    padding-top: 10px;
+    font-size: 20px;
+    border-bottom: 1px solid gray;
+}
+/**
+DATA
+ */
+.userinfo-data{
+    grid-area: data;
+}
+/**
+MARKS
+ */
+.userinfo-marks{
+    grid-area: marks;
+}
+
+/**
+STATUS
+ */
+.userinfo-status{
+    grid-area: status;
+    font-size: 20px;
+}
+
+.processing{
+    color: red;
+}
+.confirm{
+    color: green;
+}
+
+/**
+BUTTONS
+ */
+.userinfo-button{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
+    background: #0B7FAB;
+    border-radius:7px;
+    color:white;
+    height: auto;
+    font-size:22px;
+    padding: 5px;
+}

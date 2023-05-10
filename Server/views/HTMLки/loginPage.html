@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/authorization.css">
+    <script src="/js/login.js"></script>
+</head>
+<body>
+
+<div class="main_div">
+    <h2>
+        <span class="entypo-login">
+            <i class="fa fa-sign-in"/>
+        </span>
+        Login
+    </h2>
+    <button class="submit" onclick="Login()">
+        <span class="entypo-lock">
+            <i class="fa fa-lock"/>
+        </span>
+    </button>
+    <span class="entypo-user inputUserIcon">
+        <i class="fa fa-user"/>
+    </span>
+    <input id="username" type="text" placeholder="Enter login" class="user" />
+    <span class="entypo-key inputPassIcon">
+        <i class="fa fa-key"/>
+    </span>
+    <input id="password" type="password" placeholder="Enter password" class="pass"/>
+    <h3 id="result" align="center"/>
+</div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+/*@import url(http://weloveiconfonts.com/api/?family=entypo);*/
+/*@import url(https://fonts.googleapis.com/css?family=Roboto);*/
+[class*="entypo-"]:before {
+    font-family: 'entypo', sans-serif;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/*h2 {
+    color:rgba(255,255,255,.8);
+    margin-left:12px;
+}*/
+
+body {
+    background: #F4D75E;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+.main_div {
+    position:relative;
+    vertical-align: center;
+    margin: 50px auto;
+    width: 380px;
+    height: auto;
+}
+
+input {
+    padding: 16px;
+    border-radius:7px;
+    border:0;
+    background: rgba(255,255,255,.2);
+    display: block;
+    width: 100%;
+    color:white;
+    font-size:18px;
+    margin: 5px;
+}
+
+input:focus {
+    outline-color: rgba(0,0,0,0);
+    background: rgba(255,255,255,.95);
+    color: #0B7FAB;
+}
+
+button {
+    float:right;
+    height: 70px;
+    /*width: 100px;*/
+    border: 0px;
+    background: #0B7FAB;
+    border-radius:7px;
+    padding: 10px;
+    color:white;
+    font-size:22px;
+}
+
+input::-webkit-input-placeholder {
+    color: white;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: #0B7FAB;
+}
+
+.container__form__input__radio {
+    background-color: initial;
+    cursor: default;
+    box-sizing: border-box;
+    margin: 3px 3px 0px 5px;
+    padding: initial;
+    border: initial;
+    height: 30px;
+}
+/**
+    container for form
+ */
+
+#container__form{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 2fr 0.5fr 0.5fr 0.8fr auto;
+    grid-template-areas: ' message message message message '
+                         ' math physics language certificate '
+                         ' error error choice1 choice2 '
+                         ' but1 but1 but2 but2 '
+                         ' list list list list ';
+    width: 80%;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    grid-gap: 10px;
+}
+#container__form__message{
+    padding-top: 60px;
+    padding-bottom: 40px;
+    grid-area: message;
+    font-size: xxx-large;
+    text-align: center;
+}
+
+#name__marks{
+    font-size: 100px;
+}
+
+#math{
+    grid-area: math;
+    width: 100%;
+}
+#physics{
+    grid-area: physics;
+    width: 100%;
+}
+#language{
+    grid-area: language;
+    width: 100%;
+}
+#certificate{
+    grid-area: certificate;
+    width: 100%;
+}
+
+#contractChoice1{
+    grid-area: choice1;
+    width: 100%;
+}
+#contractChoice2{
+    grid-area: choice2;
+    width: 100%;
+}
+#choice{
+    grid-area: but1;
+    width: 100%;
+}
+#choice_all{
+    grid-area: but2;
+    width: 100%;
+}
+
+#serving{
+    grid-area: error;
+    width: 100%;
+    color: red;
+}
+
+#error{
+    font-size: 30px;
+}
+
+.container__form__input{
+}
+
+/**
+    list university
+ */
+#container__list{
+    grid-area: list;
+    display: grid;
+    width: 80%;
+    margin: auto;
+}
+.container__list__univer__a{
+    margin: 0;
+    color: dodgerblue;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.container__list__univer__a:hover{
+    color: crimson;
+}
+.container__list__univer{
+    margin-bottom: 5px;
+    margin-left: 5%;
+}
+
+.add_info_submit{
+    height: 70px;
+    width: 100px;
+    border: 0px;
+    background: #0B7FAB;
+    border-radius:7px;
+    padding: 10px;
+    color:white;
+    font-size:22px;
+}
+
+td {
+    padding: 10px 15px;
+}
