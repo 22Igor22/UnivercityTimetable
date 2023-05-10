@@ -12,8 +12,7 @@ const {GetAbilityFor} = require("./security/privilegies");
 const express = require("express");
 const app = express()
 const authRouter = require("./route/authRouter");
-const univRouter = require("./route/timetableRouter");
-const fitRouter = require("./route/fit");
+const timetableRouter = require("./route/timetableRouter");
 const fs = require("fs");
 
 //const adminRouter = require("./route/admin");
@@ -68,15 +67,9 @@ app.get('/resource', (req, res) =>
 // app.use("/admin", adminRouter);
 // app.use("/home", homeRouter);
 app.use("/auth", authRouter);
-app.use("/univers", univRouter);
-app.use("/belstu_fit", fitRouter);
-
-
+app.use("/timeT", timetableRouter);
 
 let server = https.createServer(options, app)
-
-module.exports = {server}
-require('./ws/websocket');
 
 server.listen(PORT, ()=>{
     console.log(`Server listening https://eingeschriebener/univers/startpage`);

@@ -13,7 +13,8 @@ module.exports =
             if (req.ability.can(rule.admin)) {
                 res.redirect('/belstu_fit/admin')
             }
-            if (req.ability.can(rule.enrol)){
+            console.log(req.payload);
+            if (req.ability.can(rule.user)){
                 let userData = await User.findOne({
                     where:{
                         id: req.payload.id
