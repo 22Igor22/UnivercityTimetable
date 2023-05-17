@@ -2,31 +2,29 @@ let loginCheck = false;
 let passwordCheck = false;
 
 function checkLogin(str) {
+    document.getElementById("error").innerHTML = "";
     if(str.length < 4)
     {
         document.getElementById("errorInput").innerHTML = "Login must be more than 4 characters";
-        document.getElementsByName("login")[0].style.borderColor = "red";
         loginCheck = false;
     }
     else
     {
         document.getElementById("errorInput").innerHTML = "";
-        document.getElementsByName("login")[0].style.borderColor = "green";
         loginCheck = true;
     }
 }
 
 function checkPassword(str) {
-    if(str.length < 8)
+    document.getElementById("error").innerHTML = "";
+    if(str.length < 4)
     {
-        document.getElementById("errorInput").innerHTML = "Password must be more than 8 characters";
-        document.getElementsByName("password")[0].style.borderColor = "red";
+        document.getElementById("errorInput").innerHTML = "Password must be more than 4 characters";
         passwordCheck = false;
     }
     else
     {
         document.getElementById("errorInput").innerHTML = "";
-        document.getElementsByName("password")[0].style.borderColor = "green";
         passwordCheck = true;
     }
 }
@@ -34,9 +32,8 @@ function checkPassword(str) {
 const loginUser = () =>{
     let login = document.getElementById("login").value;
     let password = document.getElementById("password").value;
-
     if(loginCheck&&passwordCheck){
-        fetch("https://Eingeschriebener/auth/login", /*TODO link*/{
+        fetch("https://UniversityTimetable:5000/auth/login", /*TODO link*/{
             method : 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -49,14 +46,13 @@ const loginUser = () =>{
         }).then(response => {return response.json()})
             .then(result => {
                 if(result.status === "not ok"){
-                    //console.log("kok")
-                    //document.getElementById("errorInput")[0].style.borderColor = "red";
-                    document.getElementById("errorInput").innerHTML = "Неверный логин или пароль";
+                    document.getElementById("errorInput").innerHTML = "Wrong login or password";
                 }
-                if(result.status === "ok"){
-                    //console.log("lpl")
-                    window.location.href = '/belstu_fit/userinfo'
-                    //redirect('/belstu_fit');
+                if(result.status === "user"){
+                    window.location.href = '/user/checkInfo'
+                }
+                else if(result.status === "admin"){
+                    window.location.href = '/timeT/timetable'
                 }
 
             }).catch(err => {
@@ -64,9 +60,9 @@ const loginUser = () =>{
         })
     }
     else{
-        document.getElementById("error").innerHTML = "Введены некорректные данные";
+        document.getElementById("error").innerHTML = "Incorrect data entered";
     }
 }
 
-let loginbut = document.getElementById('submit_login');
+let loginbut = document.getElementById('submit');
 loginbut.addEventListener("click", loginUser)

@@ -1,6 +1,5 @@
-let loginCheck = false;
-let passwordCheck = false;
-let repeatCheck = false;
+let loginCheck = true;
+let groupIDCheck = true;
 
 function checkLogin(str) {
     document.getElementById("error").innerHTML = "";
@@ -16,18 +15,6 @@ function checkLogin(str) {
     }
 }
 
-function checkPassword(str) {
-    document.getElementById("error").innerHTML = "";
-    if (str.length < 4) {
-        document.getElementById("errorInput").innerHTML = "Password must be more than 4 characters";
-        passwordCheck = false;
-        return;
-    } else {
-        document.getElementById("errorInput").innerHTML = "";
-        passwordCheck = true;
-    }
-}
-
 function checkGroupID(str) {
     document.getElementById("error").innerHTML = "";
     if (0 < parseInt(str, 10) && parseInt(str, 10) < 10) {
@@ -39,12 +26,11 @@ function checkGroupID(str) {
     }
 }
 
-const registUser = () =>{
+const updUser = () =>{
     let login = document.getElementById("login").value;
-    let password = document.getElementById("password").value;
     let groupID = document.getElementById("groupID").value;
-    if(loginCheck&&passwordCheck&&groupIDCheck){
-        fetch("https://UniversityTimetable:5000/auth/register", /*TODO link*/{
+    if(loginCheck&&groupIDCheck){
+        fetch("https://UniversityTimetable:5000/user/updInfo", /*TODO link*/{
             method : 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -52,16 +38,15 @@ const registUser = () =>{
             body: JSON.stringify(
                 {
                     login : login,
-                    password: password,
                     groupID: groupID
                 })
         }).then(response => {return response.json()})
             .then(result => {
                 if(result.status === "not ok"){
-                    document.getElementById("error").innerHTML = "This login is already taken";
+                    document.getElementById("error").innerHTML = "Wrong data";
                 }
                 if(result.status === "ok"){
-                    window.location.href = '/auth/login'
+                    window.location.href = '/user/checkInfo'
                 }
 
             }).catch(err => {
@@ -74,7 +59,4 @@ const registUser = () =>{
 
 }
 
-document.getElementById('submit_reg').addEventListener("click", registUser)
-
-
-
+document.getElementById('submit_upd').addEventListener("click", updUser)

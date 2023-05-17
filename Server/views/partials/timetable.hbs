@@ -1,0 +1,72 @@
+<div>
+    <input id="inpText" type="text" style="margin: 20px;display: inline-block;"><p style="display: inline-block;">Search Field</p>
+    <a href="https://UniversityTimetable:5000/timeT/note" style="margin: 5px;float: right" type="button"
+        class="btn btn-primary">Notes</a>
+    <a href="https://UniversityTimetable:5000/user/checkInfo" style="margin: 5px;float: right" type="button"
+        class="btn btn-primary">Back</a>
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th>GroupID</th>
+                <td>Subject</td>
+                <td>Date_time</td>
+                <td>Teacher</td>
+                <td>Auditorium</td>
+            </tr>
+        </thead>
+        <tbody name="tbody">
+            {{#each timeT}}
+            <tr class="table-light">
+                <th scope="row">{{this.groupID}}</th>
+                <td>{{this.subject}}</td>
+                <td>{{this.date_time}}</td>
+                <td>{{this.teacher}}</td>
+                <td>{{this.auditorium}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const inputElement = document.getElementById('inpText');
+
+            inputElement.addEventListener('input', function (event) {
+                // Отправляем AJAX-запрос для получения данных с сервера
+                $.ajax({
+                    url: 'https://UniversityTimetable:5000/timeT/searchInTT', // Укажите URL-адрес серверного маршрута для получения данных
+                    method: 'POST',
+                    data: { text: event.target.value },
+                    success: function (response) {
+                        // В случае успешного ответа сервера обновляем таблицу на странице
+                        const timeTData = response.timeT;
+                        // Получаем ссылку на tbody элемент таблицы
+                        const tbodyList = document.getElementsByName('tbody');
+                        tbodyList.forEach(function (tbody) {
+                            // Очищаем содержимое tbody
+                            while (tbody.firstChild) {
+                                tbody.removeChild(tbody.firstChild);
+                            }
+                            // Генерируем строки таблицы на основе полученных данных
+                            timeTData.forEach(function (item) {
+                                const row = `<tr class="table-light">
+          <th scope="row">${item.groupID}</th>
+          <td>${item.subject}</td>
+          <td>${item.date_time}</td>
+          <td>${item.teacher}</td>
+          <td>${item.auditorium}</td>
+        </tr>`;
+                                tbody.insertAdjacentHTML('beforeend', row);
+                                console.log(tbody)
+                            });
+                        })
+                    },
+                    error: function (error) {
+                        console.error('Произошла ошибка при получении данных с сервера:', error);
+                    }
+                });
+
+            });
+        })
+    </script>
+</div>

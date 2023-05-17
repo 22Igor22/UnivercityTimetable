@@ -1,0 +1,206 @@
+<div>
+    <input id="inpText" type="text" style="margin: 20px;display: inline-block;">
+    <p style="display: inline-block;">Search Field</p>
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th style="width: 150px;">ID</th>
+                <td>GroupID</td>
+                <td>Subject</td>
+                <td>Date_time</td>
+                <td>Teacher</td>
+                <td>Auditorium</td>
+                <td colspan="2">Submit</td>
+            </tr>
+        </thead>
+        <tbody name="tbody">
+            <tr class="table-light">
+                <th></th>
+                <td><input class="form-control" type="text" value="groupID"></td>
+                <td><input class="form-control" type="text" value="subject"></td>
+                <td><input class="form-control" type="text" value="date_time"></td>
+                <td><input class="form-control" type="text" value="teacher"></td>
+                <td><input class="form-control" type="text" value="auditorium"></td>
+                <td><button onclick="addTT(this)" class="btn btn-outline-info">Add</button></td>
+            </tr>
+            {{#each timeT}}
+            <tr class="table-light">
+                <th scope="row"><input class="form-control" type="text" value="{{this.id}}" readonly> </th>
+                <td><input class="form-control" type="text" value="{{this.groupID}}"> </td>
+                <td><input class="form-control" type="text" value="{{this.subject}}"> </td>
+                <td><input class="form-control" type="text" value="{{this.date_time}}"> </td>
+                <td><input class="form-control" type="text" value="{{this.teacher}}"> </td>
+                <td><input class="form-control" type="text" value="{{this.auditorium}}"></td>
+                <td><button onclick="updTT(this)" class="btn btn-outline-info">Upd</button></td>
+                <td><button onclick="delTT(this)" class="btn btn-outline-danger">Del</button></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const inputElement = document.getElementById('inpText');
+
+            inputElement.addEventListener('input', function (event) {
+                // Отправляем AJAX-запрос для получения данных с сервера
+                $.ajax({
+                    url: 'https://UniversityTimetable:5000/timeT/searchInTT', // Укажите URL-адрес серверного маршрута для получения данных
+                    method: 'POST',
+                    data: { text: event.target.value },
+                    success: function (response) {
+                        // В случае успешного ответа сервера обновляем таблицу на странице
+                        const timeTData = response.timeT;
+                        // Получаем ссылку на tbody элемент таблицы
+                        const tbodyList = document.getElementsByName('tbody');
+                        tbodyList.forEach(function (tbody) {
+                            // Очищаем содержимое tbody
+                            while (tbody.firstChild) {
+                                tbody.removeChild(tbody.firstChild);
+                            }
+                            tbody.insertAdjacentHTML('beforeend', `<tr class="table-light">
+                <th></th>
+                <td><input class="form-control" type="text" value="groupID"></td>
+                <td><input class="form-control" type="text" value="subject"></td>
+                <td><input class="form-control" type="text" value="date_time"></td>
+                <td><input class="form-control" type="text" value="teacher"></td>
+                <td><input class="form-control" type="text" value="auditorium"></td>
+                <td><button onclick="addTT(this)" class="btn btn-outline-info">Add</button></td>
+            </tr>`)
+                            // Генерируем строки таблицы на основе полученных данных
+                            timeTData.forEach(function (item) {
+                                const row = `
+                                <tr class="table-light">
+          <th scope="row"><input class="form-control" type="text" value="${item.id}" readonly> </th>
+          <td><input class="form-control" type="text" value="${item.groupID}"></td>
+          <td><input class="form-control" type="text" value="${item.subject}"></td>
+          <td><input class="form-control" type="text" value="${item.date_time}"></td>
+          <td><input class="form-control" type="text" value="${item.teacher}"></td>
+          <td><input class="form-control" type="text" value="${item.auditorium}"></td>
+          <td><button onclick="updTT(this)" class="btn btn-outline-info">Upd</button></td>
+          <td><button onclick="delTT(this)" class="btn btn-outline-danger">Del</button></td>
+        </tr>`;
+                                tbody.insertAdjacentHTML('beforeend', row);
+                            });
+                        })
+                    },
+                    error: function (error) {
+                        console.error('Произошла ошибка при получении данных с сервера:', error);
+                    }
+                });
+
+            });
+        })
+        function updTT(button) {
+            // Получаем элементы <input> внутри <tr>
+            const tr = button.closest('tr');
+            const inputs = tr.querySelectorAll('input');
+
+            // Создаем массив для хранения значений
+            const values = [];
+
+            // Итерируемся по каждому элементу <input>
+            inputs.forEach(input => {
+                // Получаем значение из каждого <input> и добавляем в массив
+                values.push(input.value);
+            });
+            fetch("https://UniversityTimetable:5000/timeT/admin/updTT", /*TODO link*/{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(
+                {
+                    id: values[0],
+                    groupID: values[1],
+                    subject: values[2],
+                    date_time: values[3],
+                    teacher: values[4],
+                    auditorium: values[5]
+                })
+        }).then(response => { return response.json() })
+            .then(result => {
+                if (result.status === "not ok") {
+                }
+                if (result.status === "ok") {
+                }
+
+            }).catch(err => {
+            })
+            location.replace(location.href);
+        }
+
+        function addTT(button) {
+            // Получаем элементы <input> внутри <tr>
+            const tr = button.closest('tr');
+            const inputs = tr.querySelectorAll('input');
+
+            // Создаем массив для хранения значений
+            const values = [];
+
+            // Итерируемся по каждому элементу <input>
+            inputs.forEach(input => {
+                // Получаем значение из каждого <input> и добавляем в массив
+                values.push(input.value);
+            });
+
+            fetch("https://UniversityTimetable:5000/timeT/admin/addTT", /*TODO link*/{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(
+                {
+                    groupID: values[0],
+                    subject: values[1],
+                    date_time: values[2],
+                    teacher: values[3],
+                    auditorium: values[4]
+                })
+        }).then(response => { return response.json() })
+            .then(result => {
+                if (result.status === "not ok") {
+                }
+                if (result.status === "ok") {
+                }
+
+            }).catch(err => {
+            })
+            location.replace(location.href);
+        }
+        function delTT(button) {
+            // Получаем элементы <input> внутри <tr>
+            const tr = button.closest('tr');
+            const inputs = tr.querySelectorAll('input');
+
+            // Создаем массив для хранения значений
+            const values = [];
+
+            // Итерируемся по каждому элементу <input>
+            inputs.forEach(input => {
+                // Получаем значение из каждого <input> и добавляем в массив
+                values.push(input.value);
+            });
+
+            fetch("https://UniversityTimetable:5000/timeT/admin/delTT", /*TODO link*/{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(
+                {
+                    id: values[0]
+                })
+        }).then(response => { return response.json() })
+            .then(result => {
+                if (result.status === "not ok") {
+                }
+                if (result.status === "ok") {
+                }
+
+            }).catch(err => {
+            })
+            location.replace(location.href);
+        }
+    </script>
+</div>

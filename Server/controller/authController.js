@@ -53,13 +53,15 @@ module.exports =
                             httpOnly: true,
                             sameSite: 'strict'
                         });
-                        //res.redirect('/belstu_fit');
-                        res.status(200).json({status: "ok"})
+                        if (auth.role=="ADMIN") {
+                            res.status(200).json({ status: "admin" })
+                        }
+                        else if (auth.role=="USER") {
+                            res.status(200).json({ status: "user" })
+                        }
                     }
                     catch (e) {
-                        //res.redirect('/auth/login')
                         res.status(200).json({status: "not ok"})
-                        //document.getElementById("errorInput").innerHTML = "дщдщд";
                     }
                 }
                 break;
@@ -80,23 +82,17 @@ module.exports =
                         css: ['materialize.min','registration'],
                         auth: false
                     });
-                //res.sendFile(path.join("\\") + "\\views\\register.html");
                 break;
             case "POST":
                 let login = req.body.login
                 let password = req.body.password
                 let hashPassword = crypto.createHash('md5').update(password).digest('hex')
-                let groupID = req.body.groupID
-                //bcrypt.hash(password, 5).then(r => {
-                //     hashPassword = r
-                // });
+                let groupID = parseInt(req.body.groupID, 10);
                 UserData.create({login: login,  password: hashPassword, role: 'USER', groupID: groupID})
-                    .then(() =>  res.status(200).json({status: "ok"})/*res.redirect('/auth/login')*/)
+                    .then(() =>  res.status(200).json({status: "ok"}))
                     .catch(err => {
                         res.status(200).json({status: "not ok"})
                     })
-    
-            // } =>  res.send(err.message));
                 break;
             default:
                 res.statusCode = 405;
@@ -109,10 +105,6 @@ module.exports =
     {
         res.clearCookie('accessToken');
         res.clearCookie('refreshToken');
-        res.redirect('/belstu_fit');
+        res.redirect('/auth/login');
     },
-    
-    ability : (req, res) => {
-        res.status(200).send(req.rules);
-    }
 }

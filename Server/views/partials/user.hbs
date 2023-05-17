@@ -1,0 +1,42 @@
+<div style="height: 100%" class="d-flex">
+    <form class="mx-auto col-md-3">
+        <fieldset class="mt-5">
+            {{#with userData}}
+            <div class="text-center">
+                <legend>User info</legend>
+            </div>
+            <div class="form-group">
+                <label for="login" class="form-label mt-4">Login</label>
+                <input value={{this.login}} type="text" class="form-control" id="login" aria-describedby="loginHelp"
+                    placeholder="Enter login" onkeyup="checkLogin(this.value)">
+            </div>
+            <div class="form-group">
+                <label for="groupID" class="form-label mt-4">GroupID</label>
+                <input value={{this.groupID}} type="text" class="form-control" id="groupID" placeholder="GroupID"
+                    onkeyup="checkGroupID(this.value)">
+            </div>
+            <div class="form-group" dis>
+                <label for="role" class="form-label mt-4">Role</label>
+                <input value={{this.role}} type="text" class="form-control" id="role" placeholder="Role" disabled="">
+            </div>
+            {{/with}}
+        </fieldset>
+        <div class="text-center">
+            <button id="submit_upd" type="button" class="btn btn-success mt-3 ml-4">Update Info</button>
+        </div>
+        <div id="serving" class="text-danger text-center">
+            <p id="errorInput"></p>
+            <p id="error"></p>
+        </div>
+    </form>
+    <div style="width: 10%" class="mt-3">
+        <a href="https://UniversityTimetable:5000/auth/logout" style="margin: 5px;float: right" type="button"
+            class="btn btn-dark">Logout</a>
+        <a href="https://UniversityTimetable:5000/timeT/timetable" style="margin: 5px;float: right" type="button"
+            class="btn btn-dark">TimeTable</a>
+        <a href="https://UniversityTimetable:5000/index.html" style="margin: 5px;float: right" type="button"
+            class="btn btn-dark">Chat</a>
+    </div>
+</div>
+
+<script src="/js/userInfoUpd.js"></script>

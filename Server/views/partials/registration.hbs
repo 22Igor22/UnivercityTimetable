@@ -1,47 +1,31 @@
-<div class="hidden"></div>
-<div id="registration">
-
-    <div class="authorization-header">
-        Регистрация
+<form class="mx-auto col-md-3"> 
+    <fieldset class="mt-5">
+        <div class="text-center">
+            <legend>Registration</legend>
+        </div>
+        <div class="form-group">
+        <label for="login" class="form-label mt-4">Login</label>
+        <input type="text" class="form-control" id="login" aria-describedby="loginHelp" autocomplete="off" placeholder="Enter login" onkeyup="checkLogin(this.value)">
+        </div>
+        <div class="form-group">
+        <label for="password" class="form-label mt-4">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" autocomplete="off" onkeyup="checkPassword(this.value)">
+        </div>
+        <div class="form-group">
+        <label for="groupID" class="form-label mt-4">Group number</label>
+        <input type="text" class="form-control" id="groupID" placeholder="GroupID" autocomplete="off" onkeyup="checkGroupID(this.value)">
+        </div>
+    </fieldset>
+    <div class="text-center">
+        <button id="submit_reg"  type="button" class="btn btn-success mt-3 ml-4">Registration</button>
     </div>
-
-    <div class="input-field">
-        <label class="black-text x-large" for="login">
-            <p class="x-large">Имя пользователя </p>
-        </label>
-        <input id="login" type="text" name="login" autocomplete="new-password" required onkeyup="checkLogin(this.value)">
-    </div>
-
-    <div class="input-field">
-        <label class="black-text x-large" for="password">
-            <p class="x-large">Пароль</p>
-        </label>
-        <input id="password" type="password" name="password" autocomplete="new-password" onkeyup="checkPassword(this.value)">
-    </div>
-
-    <div class="input-field">
-        <label class="black-text x-large" for="repeat">
-            <p class="x-large">Повторите пароль</p>
-        </label>
-        <input id="repeat" type="password" name="repeat" autocomplete="new-password" onkeyup="checkRepeat(this.value)">
-    </div>
-
-    <div class="input-field">
-        <label class="black-text x-large" for="groupID">
-            <p class="x-large">Номер группы</p>
-        </label>
-        <input id="groupID" type="groupID" name="groupID" autocomplete="new-password" onkeyup="checkGroupID(this.value)">
-    </div>
-
-    <div id="serving" class="authorization_error">
+    <div id="serving" class="text-danger text-center">
         <p id="errorInput"></p>
         <p id="error"></p>
     </div>
-
     <div>
-        <a class="black-text large authorization_links_a" href="https://localhost:5000/auth/login" style="color: black"> Вы уже зарегистрированы?</a>
-        <button id="submit_regist">Регистрация</button>
+        <a class="black-text large authorization_links_a" href="https://UniversityTimetable:5000/auth/login" style="color: black"> Are you already registered?</a>
     </div>
-</div>
+</form>
 
-<script src="/js/registration.js"></script>
+<script src="\js\registration.js"></script>

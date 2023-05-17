@@ -1,0 +1,11 @@
+body {
+    height: 90vh;
+  }
+
+form {
+    height: 100%;
+  }
+
+tr, td, th {
+  box-shadow: none !important;
+}

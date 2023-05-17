@@ -1,34 +1,30 @@
-<div class="hidden"></div>
+<div style="height: 100%;">
+    <form class="mx-auto w-25 h-auto shadow p-3 mt-5 bg-body rounded">
+        <div class="text-center">
+            Authorization
+        </div>
+        <div class="form-group">
+            <label for="login" class="form-label mt-4">Login</label>
+            <input type="text" class="form-control" id="login" aria-describedby="loginHelp" placeholder="Enter login"
+                onkeyup="checkLogin(this.value)">
+        </div>
+        <div class="form-group">
+            <label for="password" class="form-label mt-4">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password"
+                onkeyup="checkPassword(this.value)">
+        </div>
 
-<div id="authorization">
-
-    <div class="authorization-header">
-        Авторизация
-    </div>
-
-    <div class="input-field">
-        <label class="black-text x-large bold validate" for="login">
-            <p class="x-large">Имя пользователя </p></label>
-        <input id="login" type="text" name="login" autocomplete="new-password" required onkeyup="checkLogin(this.value)">
-    </div>
-
-    <div class="input-field">
-        <label  class="black-text x-large bold" for="password">
-            <p class="x-large">Пароль</p>
-        </label>
-        <input id="password" type="password" name="password" autocomplete="new-password" required onkeyup="checkPassword(this.value)">
-    </div>
-
-    <div id="serving" class="authorization_error">
-        <p id="errorInput"></p>
-        <p id="error"></p>
-    </div>
-
-    <div class="authorization_links">
-        <button id="submit_login" class="authorization_links_button">Войти</button>
-        <a class="black-text large authorization_links_a" href="https://Eingeschriebener/auth/register" style="color: black"> Вы ещё не зарегистрировались?</a>
-    </div>
-
+        <div class="text-center">
+            <button id="submit" type="button" class="btn btn-success mt-3 ml-4">Submit</button>
+        </div>
+        <div id="serving" class="text-danger text-center">
+            <p id="errorInput"></p>
+            <p id="error"></p>
+        </div>
+        <div class="authorization_links">
+            <a class="black-text large authorization_links_a" href="https://UniversityTimetable:5000/auth/register"
+                style="color: black"> Haven't registered yet?</a>
+        </div>
+    </form>
 </div>
-
 <script src="/js/authorization.js"></script>

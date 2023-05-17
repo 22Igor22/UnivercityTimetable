@@ -1,0 +1,24 @@
+<div style="height: 100%;">
+  <a href="https://UniversityTimetable:5000/auth/logout" style="margin: 5px;float: right" style="float: right;" type="button"
+    class="btn btn-dark">Logout</a>
+  <a href="https://UniversityTimetable:5000/timeT/timetable" style="margin: 5px;float: right" style="float: right;" type="button"
+    class="btn btn-dark">Back</a>
+  <h1 id="monthName" style="text-align: center;"></h1>
+  <div id="calendar" style="text-align: center;"></div>
+  {{#each notes}}
+  <div name="noteID" hidden="true">{{this.id}}</div>
+  <div name="note" hidden="true">{{this.note}}</div>
+  <div name="date" hidden="true">{{this.date_time}}</div>
+  {{/each}}
+  <div id="noteDiv" class="d-flex justify-content-center align-items-center" style="visibility:hidden;">
+    <div class="card bg-secondary mb-3" style="max-width: 20rem;">
+      <div class="card-header">Note</div>
+      <div class="card-body">
+        <textarea id="noteText" class="card bg-secondary mb-3" style="align-content: center;"></textarea>
+      </div>
+      <button onclick="doNote()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/note.js"></script>

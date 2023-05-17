@@ -1,141 +1,248 @@
-body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
-    width: auto;
-}
-html{
-    margin-left: auto;
-    margin-right: auto;
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+:root {
+	--dark-color-a: #000000;
+	--dark-color-b: #272728;
+	--light-color: #e0e3f4;
+	--success-color: #65ce65;
+	--error-color: #df3832;
 }
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 body {
-    left: 0;
-    right: 0;
-    width: 100%;
-    background: #F4D75E;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	background: var(--light-color);
+	margin: 20px;
 }
 
-.hidden{
-    min-height: calc(100vh - 18px - 65px);
-}
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+ul {
+	list-style: none;
 }
 
-/* Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
-}
-/**
-GENERAL
- */
-.bold{
-    font-weight: 600;
+a {
+	text-decoration: none;
 }
 
-.medium{
-    font-size: medium;
+.btn {
+	cursor: pointer;
+	padding: 5px 15px;
+	background: var(--light-color);
+	color: var(--dark-color-a);
+	border: 0;
+	font-size: 17px;
+    border-radius: 4px;
 }
-.large{
-    font-size: large;
+
+/* Chat Page */
+
+.chat-container {
+	max-width: 1100px;
+	background: #fff;
+	margin: 30px auto;
+	overflow: hidden;
+
 }
-.x-large{
-    font-size: x-large;
+
+.chat-header {
+	background: var(--dark-color-a);
+	color: #fff;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
-.xx-large{
-    font-size: xx-large;
+
+.chat-main {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
 }
-.xxx-large{
-    font-size: xxx-large;
+
+.chat-sidebar {
+	background: var(--dark-color-b);
+	color: #fff;
+	padding: 20px 20px 60px;
+	overflow-y: scroll;
 }
-.pointer{
+
+.chat-sidebar h2 {
+	font-size: 20px;
+	background: rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.chat-sidebar h3 {
+	margin-bottom: 15px;
+}
+
+.chat-sidebar ul li {
+	padding: 10px 0;
+    border-top: .7px solid;
+    border-bottom: .7px solid;
+}
+
+.chat-sidebar::-webkit-scrollbar {
+    width: 1em;
+}
+
+ 
+.chat-sidebar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.chat-sidebar::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.chat-messages {
+	padding: 30px;
+	max-height: 500px;
+	overflow-y: scroll;
+    background-image: url('../img/chat-bg.jpg');
+    background-position: center;
+    background-size: contain;
+}
+
+.chat-messages .message {
+	padding: 10px;
+	margin-bottom: 15px;
+	background-color: var(--light-color);
+	border-radius: 5px;
+}
+
+.chat-messages .message .meta {
+	font-size: 15px;
+	font-weight: bold;
+	color: var(--dark-color-b);
+	opacity: 0.7;
+	margin-bottom: 7px;
+    display: flex;
+}
+
+.chat-messages .message .meta span {
+	color: #777;
+    margin-left: auto;
+}
+
+.chat-form-container {
+	padding: 20px 30px;
+	background-color: var(--dark-color-a);
+}
+
+.chat-form-container form {
+	display: flex;
+}
+
+.chat-form-container input[type='text'] {
+	border-radius: 15px;
+    border: none;
+    font-size: 16px;
+    padding: 10px;
+    height: 40px;
+    flex: 1;
+    outline: none;
+
+}
+
+button.btn-plane {
+    width: 50px;
+    border-radius: 50px;
+    border: none;
+    background: none;
     cursor: pointer;
 }
-.blue-button{
-    float:right;
-    height: 40px;
-    border: 0;
-    background: #0B7FAB;
-    border-radius:7px;
-    padding: 10px;
-    color:white;
-    font-size:18px;
-    margin: 5px;
+
+i.fas.fa-paper-plane{
+    font-size: 1.5rem;
+    color: white;
+    outline: none;
 }
-/**
-HEADER
- */
-.nav{
+
+/* Join Page */
+.join-container {
+	max-width: 500px;
+	margin: 80px auto;
+	color: #fff;
+}
+
+.join-header {
+	text-align: center;
+	padding: 20px;
+	background: var(--dark-color-a);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.join-main {
+	padding: 30px 40px;
+	background: var(--dark-color-b);
+    border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.join-main p {
+	margin-bottom: 20px;
+}
+
+.join-main .form-control {
+	margin-bottom: 20px;
+}
+
+.join-main label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.join-main input[type='text']  {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+    border-radius: 3px;
 
 }
 
-.nav-wrapper{
+.join-main input[type='email']  {
+	font-size: 16px;
+    border-radius: 3px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+}
+
+.join-main select {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+}
+
+.join-main .btn {
+	margin-top: 20px;
+	width: 100%;
+    border: none;
+
+}
+.flex{
     display: grid;
-    grid-template-columns: 200px 1fr 160px;
-    grid-template-areas: ' fit logo icons';
-    background-color: #E9723D;
-    overflow: hidden;
-    font-size: 25px;
+    place-content: center;
 }
-#brand-logo{
-    top: -20px;
-}
-#logo{
-    grid-area: logo;
-    font-size: 30px;
-    text-align: center;
-}
-#fit{
-    grid-area: fit;
-    margin-left: 50px;
-}
-#icons{
-    grid-area: icons;
-    display: inline-flex;
-}
-.nav-wrapper-icons{
-    display: inline-block;
-    height: 40px;
-    margin: 10px;
-    padding: 0;
-    width: auto;
-}
+@media (max-width: 700px) {
+	.chat-main {
+		display: block;
+	}
 
-/**
-FOOTER
- */
-footer {
-    height: 20px;
-    background: #0B7FAB;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+	.chat-sidebar {
+		display: none;
+	}
 }
