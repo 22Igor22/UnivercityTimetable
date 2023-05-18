@@ -7,6 +7,12 @@ const { admin, guest, rule } = require("../security/defines");
 const fs = require('fs')
 const crypto = require('crypto');
 const { where } = require("sequelize");
+const redisClient = require("redis").createClient();
+
+redisClient.on("ready", () => console.log("ready"));
+redisClient.on("error", (err) => console.log(`error: ${err}`));
+redisClient.connect().then(() => console.log("connect"));
+redisClient.on("end", () => console.log("end"));
 
 module.exports =
 {
@@ -51,5 +57,61 @@ module.exports =
             .catch(err => {
                 res.status(200).json({ status: "not ok" })
             })
+    },
+
+    refreshToken: async (req, res, next) => {
+        if (req.cookies.refreshToken) {
+            let isToken = await redisClient.get(req.cookies.refreshToken);
+            if (isToken === null) {
+              jwt.verify(req.cookies.refreshToken, refreshKey, async (err, payload) => {
+                if (err) res.send(err.message);
+                else if (payload) {
+                  await redisClient.set(req.cookies.refreshToken, "blocked");
+        
+                  const candidate = await User.findOne({ where: { id: payload.id } });
+                  const newAccessToken = jwt.sign(
+                    {
+                      id: candidate.id,
+                      login: candidate.login,
+                      role: candidate.role
+                    },
+                    accessKey,
+                    { expiresIn: 10 * 10 }
+                  );
+                  const newRefreshToken = jwt.sign(
+                    {
+                      id: candidate.id,
+                      login: candidate.login,
+                      role: candidate.role
+                    },
+                    refreshKey,
+                    { expiresIn: 24 * 60 * 60 }
+                  );
+        
+                  res.cookie("accessToken", newAccessToken, {
+                    httpOnly: true,
+                    sameSite: "strict",
+                  });
+        
+                  res.cookie("refreshToken", newRefreshToken, {
+                    httpOnly: true,
+                    sameSite: "strict",
+                    path: "/user/refresh-token",
+                  });
+                  res.cookie("refreshToken", newRefreshToken, {
+                    httpOnly: true,
+                    sameSite: "strict",
+                    path: "/auth/logout",
+                  });
+                  if(candidate.role=="USER"){
+                    res.redirect("/user/checkInfo");
+                  }
+                  else if(candidate.role=="ADMIN"){
+                    res.redirect("/timeT/adminTT");
+                  }
+                }
+              });
+            } else res.send("Refresh token is blocked");
+          } else res.status(401).send("To access the resource, you need to log in");
     }
 }

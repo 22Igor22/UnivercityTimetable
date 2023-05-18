@@ -32,13 +32,15 @@
                 </div>
                 <div class="flex">
                     <button type="submit" class="btn">Login to Chat</button>
+                    <a href="https://UniversityTimetable:5000/auth/logout" type="button"
+                    class="btn btn-primary">Logout</a>
                 </div>
             </form>
         </main>
     </div>
     <script>
         function getData() {
-            fetch('/userName') // замените '/api/data' на путь к вашему серверному API
+            fetch('https://UniversityTimetable:5000/chat/userName') // замените '/api/data' на путь к вашему серверному API
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('username').value = data

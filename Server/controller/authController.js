@@ -5,6 +5,12 @@ const {accessKey, refreshKey} = require("../security/jwtKeys");
 const {Sequelize} = require("../model/contextDB");
 const fs = require('fs')
 const crypto = require('crypto')
+const redisClient = require("redis").createClient();
+
+redisClient.on("ready", () => console.log("ready"));
+redisClient.on("error", (err) => console.log(`error: ${err}`));
+redisClient.connect().then(() => console.log("connect"));
+redisClient.on("end", () => console.log("end"));
 
 path.pop();
 
@@ -37,7 +43,7 @@ module.exports =
                             id: auth.id,
                             login: auth.login,
                             role: auth.role
-                        }, accessKey, {expiresIn: 3600});
+                        }, accessKey, {expiresIn: 10 * 10});
     
                         const refreshToken = jwt.sign({
                             id: auth.id,
@@ -45,14 +51,20 @@ module.exports =
                             role: auth.role
                         }, refreshKey, {expiresIn: 24 * 3600});
     
-                        res.cookie('accessToken', accessToken, {
+                        res.cookie("accessToken", accessToken, {
                             httpOnly: true,
-                            sameSite: 'strict'
-                        });
-                        res.cookie('refreshToken', refreshToken, {
+                            sameSite: "strict",
+                          });
+                          res.cookie("refreshToken", refreshToken, {
                             httpOnly: true,
-                            sameSite: 'strict'
-                        });
+                            sameSite: "strict",
+                            path: "/user/refresh-token",
+                          });
+                          res.cookie("refreshToken", refreshToken, {
+                            httpOnly: true,
+                            sameSite: "strict",
+                            path: "/auth/logout",
+                          });
                         if (auth.role=="ADMIN") {
                             res.status(200).json({ status: "admin" })
                         }
@@ -101,10 +113,11 @@ module.exports =
         }
     },
     
-    logout : (req, res) =>
+    logout : async (req, res) =>
     {
         res.clearCookie('accessToken');
         res.clearCookie('refreshToken');
+        await redisClient.set(req.cookies.refreshToken, "blocked");
         res.redirect('/auth/login');
     },
 }

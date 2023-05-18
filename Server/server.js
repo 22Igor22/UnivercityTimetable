@@ -24,6 +24,7 @@ const app = express()
 const authRouter = require("./route/authRouter");
 const timetableRouter = require("./route/timetableRouter");
 const userRouter = require("./route/userRouter");
+const chatRouter = require("./route/chatRouter");
 const fs = require("fs");
 
 const PORT = process.env.PORT || 5000;
@@ -55,14 +56,13 @@ app.use((req, res, next) => {
         jwt.verify(req.cookies.accessToken, accessKey, (err, payload) => {
             if (err) {
                 res.clearCookie('accessToken');
-                res.redirect('/auth/login');
+                res.redirect('/user/refresh-token');
             }
             req.payload = payload;
         });
     } else {
         req.payload = { role: Guest };
     }
-
     req.ability = GetAbilityFor(req);
     next();
 });
@@ -77,42 +77,12 @@ app.get('/resource', (req, res) => {
 app.use("/user", userRouter);
 app.use("/auth", authRouter);
 app.use("/timeT", timetableRouter);
+app.use("/chat", chatRouter);
 
 let server = https.createServer(options, app)
 const io = socketio(server);
 
 app.use(express.static(__dirname + 'public'));
-
-app.get('/userName', (req, res) => {
-    res.send(JSON.stringify(req.payload.login));
-});
-
-app.post('/messages', async (req, res) => {
-    let messages = await Chat.findOne({
-        where: {
-            channel: req.body.room
-        }
-    });
-    res.send(JSON.stringify(messages.messages));
-});
-
-app.post('/addToHistory', async (req, res) => {
-    Chat.findByPk(req.body.room)
-  .then(chat => {
-    if (chat) {
-      chat.messages += req.body.mess + ',';
-      return chat.save();
-    } else {
-      throw new Error('String not found');
-    }
-  })
-  .then(updatedChat => {
-    console.log('Succes add data');
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-});
 
 io.on('connection', socket => {
     socket.on('joinRoom', ({ username, room }) => {

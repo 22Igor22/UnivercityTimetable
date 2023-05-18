@@ -1,6 +1,10 @@
 <div>
     <input id="inpText" type="text" style="margin: 20px;display: inline-block;">
     <p style="display: inline-block;">Search Field</p>
+    <a href="https://UniversityTimetable:5000/auth/logout" style="margin: 5px;float: right" type="button"
+        class="btn btn-dark">Logout</a>
+    <a href="https://UniversityTimetable:5000/index.html" style="margin: 5px;float: right" type="button"
+        class="btn btn-dark">Chat</a>
     <table class="table table-hover">
         <thead>
             <tr class="table-dark">
@@ -105,28 +109,28 @@
                 values.push(input.value);
             });
             fetch("https://UniversityTimetable:5000/timeT/admin/updTT", /*TODO link*/{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify(
-                {
-                    id: values[0],
-                    groupID: values[1],
-                    subject: values[2],
-                    date_time: values[3],
-                    teacher: values[4],
-                    auditorium: values[5]
-                })
-        }).then(response => { return response.json() })
-            .then(result => {
-                if (result.status === "not ok") {
-                }
-                if (result.status === "ok") {
-                }
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(
+                    {
+                        id: values[0],
+                        groupID: values[1],
+                        subject: values[2],
+                        date_time: values[3],
+                        teacher: values[4],
+                        auditorium: values[5]
+                    })
+            }).then(response => { return response.json() })
+                .then(result => {
+                    if (result.status === "not ok") {
+                    }
+                    if (result.status === "ok") {
+                    }
 
-            }).catch(err => {
-            })
+                }).catch(err => {
+                })
             location.replace(location.href);
         }
 
@@ -145,27 +149,27 @@
             });
 
             fetch("https://UniversityTimetable:5000/timeT/admin/addTT", /*TODO link*/{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify(
-                {
-                    groupID: values[0],
-                    subject: values[1],
-                    date_time: values[2],
-                    teacher: values[3],
-                    auditorium: values[4]
-                })
-        }).then(response => { return response.json() })
-            .then(result => {
-                if (result.status === "not ok") {
-                }
-                if (result.status === "ok") {
-                }
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(
+                    {
+                        groupID: values[0],
+                        subject: values[1],
+                        date_time: values[2],
+                        teacher: values[3],
+                        auditorium: values[4]
+                    })
+            }).then(response => { return response.json() })
+                .then(result => {
+                    if (result.status === "not ok") {
+                    }
+                    if (result.status === "ok") {
+                    }
 
-            }).catch(err => {
-            })
+                }).catch(err => {
+                })
             location.replace(location.href);
         }
         function delTT(button) {
@@ -183,23 +187,23 @@
             });
 
             fetch("https://UniversityTimetable:5000/timeT/admin/delTT", /*TODO link*/{
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify(
-                {
-                    id: values[0]
-                })
-        }).then(response => { return response.json() })
-            .then(result => {
-                if (result.status === "not ok") {
-                }
-                if (result.status === "ok") {
-                }
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(
+                    {
+                        id: values[0]
+                    })
+            }).then(response => { return response.json() })
+                .then(result => {
+                    if (result.status === "not ok") {
+                    }
+                    if (result.status === "ok") {
+                    }
 
-            }).catch(err => {
-            })
+                }).catch(err => {
+                })
             location.replace(location.href);
         }
     </script>

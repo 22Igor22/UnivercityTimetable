@@ -22,7 +22,6 @@ socket.on('roomUsers', ({ room, users }) => {
 // Message from server
 socket.on('message', (message) => {
   outputMessage(message);
-
   // Scroll down
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
@@ -36,7 +35,7 @@ chatForm.addEventListener('submit', (e) => {
   msg = msg.trim();
   console.log(msg)
 
-  fetch('/addToHistory', {
+  fetch('https://UniversityTimetable:5000/chat/addToHistory', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
@@ -113,7 +112,7 @@ const div = document.createElement('div');
   div.classList.add('message');
   const para = document.createElement('p');
   para.classList.add('text');
-  fetch('/messages', {
+  fetch('https://UniversityTimetable:5000/chat/messages', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json;charset=utf-8'
